@@ -1,30 +1,30 @@
 {
     "evaluation_results": {
-        "roc_auc": 0.7363597612958227,
+        "roc_auc": 0.6853561187320778,
         "report": {
             "0": {
-                "precision": 0.8608949416342413,
-                "recall": 0.855072463768116,
-                "f1-score": 0.8579738245273874,
+                "precision": 0.8226643598615917,
+                "recall": 0.9188405797101449,
+                "f1-score": 0.8680967594705614,
                 "support": 1035.0
             },
             "1": {
-                "precision": 0.6062992125984252,
-                "recall": 0.6176470588235294,
-                "f1-score": 0.6119205298013245,
+                "precision": 0.6679841897233202,
+                "recall": 0.45187165775401067,
+                "f1-score": 0.5390749601275917,
                 "support": 374.0
             },
-            "accuracy": 0.7920511000709723,
+            "accuracy": 0.794889992902768,
             "macro avg": {
-                "precision": 0.7335970771163333,
-                "recall": 0.7363597612958227,
-                "f1-score": 0.7349471771643559,
+                "precision": 0.745324274792456,
+                "recall": 0.6853561187320778,
+                "f1-score": 0.7035858597990765,
                 "support": 1409.0
             },
             "weighted avg": {
-                "precision": 0.7933159475537621,
-                "recall": 0.7920511000709723,
-                "f1-score": 0.7926623041387802,
+                "precision": 0.7816066000094173,
+                "recall": 0.794889992902768,
+                "f1-score": 0.7807623712844218,
                 "support": 1409.0
             }
         }
@@ -32,7 +32,7 @@
     "best_parameters": {
         "model__criterion": "entropy",
         "model__max_depth": 5,
-        "model__min_samples_leaf": 10
+        "model__min_samples_leaf": 20
     },
-    "best_score": 0.843265541492787
+    "best_score": 0.8430418102107058
 }
