@@ -1,6 +1,7 @@
 import os
 import joblib
 import pandas as pd
+from typing import Dict, Any
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from pydantic import BaseModel, Extra, Field
 
@@ -14,39 +15,14 @@ model_path = os.path.join(project_root, "models", MODEL_NAME)
 model = joblib.load(model_path)
 
 class CustomerData(BaseModel):
-    Latitude: float
-    Longitude: float
-    Senior_Citizen: int = Field(alias="Senior Citizen")
-    Partner: int
-    Dependents: int
-    Tenure_Months: int = Field(alias="Tenure Months")
-    Multiple_Lines: int = Field(alias="Multiple Lines")
-    Online_Security: int = Field(alias="Online Security")
-    Online_Backup: int = Field(alias="Online Backup")
-    Device_Protection: int = Field(alias="Device Protection")
-    Tech_Support: int = Field(alias="Tech Support")
-    Streaming_TV: int = Field(alias="Streaming TV")
-    Streaming_Movies: int = Field(alias="Streaming Movies")
-    Contract: int
-    Paperless_Billing: int = Field(alias="Paperless Billing")
-    Monthly_Charges: float = Field(alias="Monthly Charges")
-    Total_Charges: float = Field(alias="Total Charges")
-    Payment_Method_Bank_transfer_automatic: int = Field(alias="Payment Method_Bank transfer (automatic)")
-    Payment_Method_Credit_card_automatic: int = Field(alias="Payment Method_Credit card (automatic)")
-    Payment_Method_Electronic_check: int = Field(alias="Payment Method_Electronic check")
-    Payment_Method_Mailed_check: int = Field(alias="Payment Method_Mailed check")
-    Internet_Service_DSL: int = Field(alias="Internet Service_DSL")
-    Internet_Service_Fiber_optic: int = Field(alias="Internet Service_Fiber optic")
-    Internet_Service_No: int = Field(alias="Internet Service_No")
-
-    class Config:
-        populate_by_name = True
-        extra = Extra.allow
+    data: Dict[str, Any]
 
 @app.post("/predict/single")
 def predict_single(customer: CustomerData):
     try:
-        data = pd.DataFrame([customer.dict(by_alias=True)])
+        input_data = customer.data
+        data = pd.DataFrame([input_data])
+        
         prediction = model.predict(data)[0]
         probability = model.predict_proba(data)[0][1]
         
