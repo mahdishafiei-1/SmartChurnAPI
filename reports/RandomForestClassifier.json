@@ -1,30 +1,30 @@
 {
     "evaluation_results": {
-        "roc_auc": 0.7000955850060709,
+        "roc_auc": 0.7027357978764628,
         "report": {
             "0": {
-                "precision": 0.831858407079646,
-                "recall": 0.9082125603864735,
-                "f1-score": 0.8683602771362586,
+                "precision": 0.8320209973753281,
+                "recall": 0.9188405797101449,
+                "f1-score": 0.8732782369146006,
                 "support": 1035.0
             },
             "1": {
-                "precision": 0.6594982078853047,
-                "recall": 0.4919786096256685,
-                "f1-score": 0.5635528330781011,
+                "precision": 0.6842105263157895,
+                "recall": 0.48663101604278075,
+                "f1-score": 0.56875,
                 "support": 374.0
             },
-            "accuracy": 0.7977288857345636,
+            "accuracy": 0.8041163946061036,
             "macro avg": {
-                "precision": 0.7456783074824753,
-                "recall": 0.7000955850060709,
-                "f1-score": 0.7159565551071798,
+                "precision": 0.7581157618455587,
+                "recall": 0.7027357978764628,
+                "f1-score": 0.7210141184573002,
                 "support": 1409.0
             },
             "weighted avg": {
-                "precision": 0.7861077225525462,
-                "recall": 0.7977288857345636,
-                "f1-score": 0.7874532621768897,
+                "precision": 0.7927867062637116,
+                "recall": 0.8041163946061036,
+                "f1-score": 0.7924453337165448,
                 "support": 1409.0
             }
         }
@@ -32,7 +32,7 @@
     "best_parameters": {
         "model__max_features": "sqrt",
         "model__min_samples_leaf": 10,
-        "model__n_estimators": 50
+        "model__n_estimators": 200
     },
-    "best_score": 0.8608094202673879
+    "best_score": 0.8595639164372122
 }

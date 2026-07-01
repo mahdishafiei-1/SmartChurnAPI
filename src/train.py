@@ -6,6 +6,7 @@ from evaluate import evaluate_model_performance
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OrdinalEncoder
+from feature_engineering import feature_engineer_transformer
 import joblib
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -16,17 +17,17 @@ def main():
     try:
         df = pd.read_csv(file_path)
         
-        x = df.drop(["Churn Value", "Churn Score", "CLTV"], axis=1, errors="ignore")
+        x = df.drop(["Churn Value", "Churn Score", "CLTV", "Total Services", "Entertainment Score"], axis=1, errors="ignore")
         y = df["Churn Value"]
 
         x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=42, test_size=0.2, stratify=y)
 
-        categorical_cols = x.select_dtypes(exclude=['number']).columns.tolist()
+        categorical_cols = x.select_dtypes(exclude=["number"]).columns.tolist()
         preprocessor = ColumnTransformer(
             transformers=[
-                ('cat', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1), categorical_cols)
+                ("cat", OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1), categorical_cols)
             ],
-            remainder='passthrough'
+            remainder="passthrough"
         )
 
         models_dict = get_param_grids()
@@ -36,8 +37,9 @@ def main():
         
         for model_name, config in models_dict.items():
             pipe = Pipeline(steps=[
-                ('preprocessor', preprocessor),
-                ('model', config["estimator"])
+                ("feature_engineering", feature_engineer_transformer),
+                ("preprocessor", preprocessor),
+                ("model", config["estimator"])
             ])
             param_grid = config["param_grid"]
 
@@ -79,4 +81,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
